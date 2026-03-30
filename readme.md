@@ -7,9 +7,11 @@ edit http msg demo with UI v0.0.2
 
 ##  v0.0.2 使用方式
 ```
-1.下载项目代码
-2.修改ProcessAction中的updateBodyData函数代码
-3.使用 mvn命令 或 idea maven插件进行编译打包 
+1. 下载项目代码 并使用idea加载
+2. 实现 ProcessAction.java 中的 updateBodyData 函数
+3. 重命名 config.java中的EXTENSION_NAME信息
+4. 使用 mvn 命令或 idea maven插件进行编译打包
+5. 使用 Burp 进行加载调试
 ```
 
 
