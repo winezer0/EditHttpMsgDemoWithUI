@@ -1,19 +1,20 @@
 package burp;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Utils {
-    public static void showStderrMsg(Integer msgLevel,String msg){
-            BurpExtender.stderr.println(msg);
-    }
-
-    public static void showStdoutMsg(Integer msgLevel, String msg){
-            BurpExtender.stdout.println(msg);
-    }
-
-
-    //包含关键字匹配正则
+public class MatchUtils {
+    /**
+     * 检查字符串是否包含匹配指定正则表达式的关键词
+     *
+     * @param regx 正则表达式字符串，用于匹配关键词
+     * @param str 待检查的目标字符串
+     * @param NoRegxValue 当正则表达式为空或空白时的默认返回值
+     * @return 如果字符串包含匹配的关键词返回true，否则返回false；
+     *         当正则表达式为空时返回NoRegxValue参数指定的值
+     */
     public static boolean isMatchKeywords(String regx, String str, Boolean NoRegxValue){
         //如果没有正在表达式,的情况下返回指定值 NoRegxValue
         if (regx.trim().length() == 0){
@@ -25,7 +26,16 @@ public class Utils {
         return mc.find();
     }
 
-    //后缀匹配
+    /**
+     * 检查文件路径的后缀是否匹配指定的正则表达式
+     *
+     * @param regx 用于匹配后缀的正则表达式
+     * @param path 待检查的文件路径字符串
+     * @param NoRegxValue 当正则表达式为空或空白时的默认返回值
+     * @return 如果文件后缀匹配正则表达式返回true，否则返回false；
+     *         当正则表达式为空时返回NoRegxValue参数指定的值；
+     *         当文件没有后缀时返回false
+     */
     public static boolean isMatchBlackSuffix(String regx, String path, Boolean NoRegxValue){
         //如果没有正在表达式,的情况下返回指定值 NoRegxValue
         if (regx.trim().length() == 0){
@@ -66,6 +76,24 @@ public class Utils {
             BurpExtender.stderr.println(String.format("[*] GetPathExtension [%s] Occur Error [%s]", path, exception.getMessage()));
         }
         return extension;
+    }
+
+
+    /**
+     * 判断指定的HTTP请求方法是否应该包含请求体
+     *
+     * @param method HTTP请求方法（如"GET", "POST"等）
+     * @return 如果该请求方法应该包含请求体返回true，否则返回false
+     */
+    public static boolean shouldBeHasBody(String method) {
+        // 定义不应该包含请求体的HTTP方法列表
+        List<String> noBodyMethods = Arrays.asList("get", "head", "delete", "trace");
+        // 如果方法在不包含请求体的列表中，返回false
+        if (noBodyMethods.contains(method.toLowerCase())) {
+            return false;
+        }
+        // 其他方法（如POST, PUT, PATCH等）通常应该包含请求体
+        return true;
     }
 
 }

@@ -1,17 +1,27 @@
-## 插件说明
-
+## v0.0.2 插件说明
 ```
-burpsuite插件
-扩展burp suite自带的替换规则
+edit http msg demo with UI v0.0.2
+用于快速实现报文修改demo, 用于处理前端加密等常见场景
+已实现 常用的请求过滤方案 、 配置UI 、 持久化配置和加载
+```
+
+##  v0.0.2 使用方式
+```
+1.下载项目代码
+2.修改ProcessAction中的updateBodyData函数代码
+3.使用 mvn命令 或 idea maven插件进行编译打包 
+```
+
+
+## v0.0.1  插件说明 
+```
+edit http msg v0.0.1
+扩展burp suite自带的替换规则 
 根据edit_http_msg.config.yml中配置的规则替换通过burp模块的请求报文.
-
-PS: 建议通过logger模块查看发送出去的最终报文记录.
+提示：v0.0.1 版本未实现UI配置
 ```
 
-
-
-## 规则示例
-
+##  v0.0.1  规则示例
 ```
 EXACT_REPLACE_RULE: "/-> /-> /admin.php"
 含义：精确匹配替换
@@ -24,3 +34,10 @@ ROUGH_REPLACE_RULE: " /-> /admin.php/"
 目前每种匹配方式仅支持单个规则.
 ```
 
+
+## 最终报文查看
+```
+较新的 burpsuit 版本请通过 自带的logger模块 查看最终发送的最终报文记录.
+
+较旧的 burpsuit 版本请通过 安装logger++查看 查看最终发送的最终报文记录.
+```
