@@ -1,3 +1,5 @@
+<img width="811" height="504" alt="Snipaste_2026-03-30_13-07-14" src="https://github.com/user-attachments/assets/127aec21-d2e9-4eb8-9624-d171d5148fa7" />
+
 ## v0.0.2 插件说明
 ```
 edit http msg demo with UI v0.0.2
